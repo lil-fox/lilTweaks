@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.lilfox.liltweaks.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "AbstractBlockAccessor",
+    "AbstractBlockMixin",
+    "HoneyBlockMixin",
+    "SlimeBlockMixin",
+    "magiclibfix.WidgetConfigOptionMixin"
+  ],
+  "client": [
+    "ClientPlayerInteractionManagerAccessor",
+    "ClientPlayerInteractionManagerMixin",
+    "GameRendererMixin",
+    "HandledScreenMixin",
+    "magiclibfix.GuiBaseMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
