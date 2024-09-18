@@ -28,7 +28,13 @@ public class InputHandler implements IMouseInputHandler {
 
         MinecraftClient mc = MinecraftClient.getInstance();
 
-        if (GuiUtils.getCurrentScreen() == null && mc.player != null && eventButtonState && mc.options.useKey.matchesMouse(eventButton) && Configs.angelBlock && Configs.angelBlockUse.getKeybind().isKeybindHeld() && mc.crosshairTarget != null && mc.crosshairTarget.getType() == HitResult.Type.MISS) {
+        if (GuiUtils.getCurrentScreen() == null
+                && mc.player != null
+                && eventButtonState
+                && mc.options.useKey.matchesMouse(eventButton)
+                && Configs.angelBlock.getBooleanValue()
+                &&  mc.crosshairTarget != null
+                && mc.crosshairTarget.getType() == HitResult.Type.MISS) { //Configs.angelBlockUse.getKeybind().isKeybindHeld() &&
             BlockPos posFront = PositionUtils.getPositionInfrontOfEntity(mc.player);
 
             if (mc.world.isAir(posFront) || !mc.world.getBlockState(posFront).getFluidState().isEmpty()) {

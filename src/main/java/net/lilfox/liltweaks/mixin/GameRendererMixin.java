@@ -23,7 +23,7 @@ public class GameRendererMixin {
     @Shadow
     @Final
     MinecraftClient client;
-    @ModifyArg(method = "updateTargetedEntity",
+    @ModifyArg(method = "findCrosshairTarget",
             at = @At(value = "INVOKE",
                     target = "Lnet/minecraft/entity/projectile/ProjectileUtil;raycast(" +
                             "Lnet/minecraft/entity/Entity;" +
@@ -35,7 +35,7 @@ public class GameRendererMixin {
     private Predicate<Entity> overrideTargetedEntityCheck(Predicate<Entity> predicate)
     {
 
-        if (Configs.niceBalls && (this.client.player != null
+        if (Configs.niceBalls.getBooleanValue() && (this.client.player != null
                 && !this.client.player.isSneaking()
         && (this.client.player.getStackInHand(Hand.MAIN_HAND).getItem() == Items.SNOWBALL
         || this.client.player.getStackInHand(Hand.MAIN_HAND).getItem() == Items.BOW)))

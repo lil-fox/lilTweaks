@@ -14,7 +14,7 @@ public class SlimeBlockMixin {
 
     @ModifyArg(method = "bounce", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;setVelocity(DDD)V"), index = 1)
     private double resetVerticalVelocity(double d, @Local(argsOnly = true) Entity entity){
-        if(Configs.noSlimeBouncing & entity instanceof PlayerEntity) {
+        if(Configs.noSlimeBouncing.getBooleanValue() & entity instanceof PlayerEntity) {
             return 0;
         }
         return d;
@@ -23,7 +23,7 @@ public class SlimeBlockMixin {
     @ModifyArg(method = "onSteppedOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;setVelocity(Lnet/minecraft/util/math/Vec3d;)V"), index = 0)
     private Vec3d noSlowness(Vec3d velocity, @Local(argsOnly = true) Entity entity){
 
-        if(Configs.noSLimeSlowness & entity instanceof PlayerEntity) {
+        if(Configs.noSLimeSlowness.getBooleanValue() & entity instanceof PlayerEntity) {
             return entity.getVelocity().multiply(1, 1, 1);
         }
         return velocity;

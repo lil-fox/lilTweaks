@@ -19,7 +19,7 @@ public class ClientPlayerInteractionManagerMixin {
             at = {@At("HEAD")}
     )
     private void dropCooldown(BlockPos pos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
-        if (Configs.permaHaste) {
+        if (Configs.permaHaste.getBooleanValue()) {
             ((ClientPlayerInteractionManagerAccessor)this).setBlockBreakingCooldown(0);
         }
 

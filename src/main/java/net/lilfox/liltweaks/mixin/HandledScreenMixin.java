@@ -31,7 +31,7 @@ public abstract class HandledScreenMixin<T extends ScreenHandler> {
             at = {@At("HEAD")}
     )
     protected void closeOnClick(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
-        if (Configs.closeInventoryByMouse && this.isClickOutsideBounds(mouseX, mouseY, this.x, this.y, button) && this.handler.getCursorStack().isEmpty()) {
+        if (Configs.closeInventoryByMouse.getBooleanValue() && this.isClickOutsideBounds(mouseX, mouseY, this.x, this.y, button) && this.handler.getCursorStack().isEmpty()) {
             this.close();
         }
 

@@ -20,7 +20,7 @@ public class AbstractBlockMixin {
             cancellable = true
     )
     public void calcBlockBreakingDelta(BlockState state, PlayerEntity player, BlockView world, BlockPos pos, CallbackInfoReturnable<Float> cir) {
-        if (Configs.permaHaste && cir.getReturnValueF() < 0.7F) {
+        if (Configs.permaHaste.getBooleanValue() && cir.getReturnValueF() < 0.7F) {
             cir.setReturnValue(cir.getReturnValueF() / 0.7F);
         }
 

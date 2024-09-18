@@ -11,9 +11,6 @@
   "entrypoints": {
     "client": [
       "net.lilfox.liltweaks.client.LilTweaksClient"
-    ],
-    "modmenu": [
-      "net.lilfox.liltweaks.integration.ModMenuImplementation"
     ]
   },
   "mixins": [

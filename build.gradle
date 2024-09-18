@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.6-SNAPSHOT'
+    id 'fabric-loom' version '1.7-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -17,19 +17,6 @@ repositories {
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
 
-    repositories {
-        mavenCentral()
-    }
-
-    maven {
-        name("Curse Maven")
-        url("https://www.cursemaven.com")
-
-        content {
-            includeGroup("curse.maven")
-        }
-    }
-
     maven {
         name("Modrinth Maven")
         url("https://api.modrinth.com/maven")
@@ -40,13 +27,11 @@ repositories {
     }
 
     maven {
-        name("Jitpack Maven")
-        url("https://jitpack.io")
-
-        content {
-            includeGroup("com.github.Nyan-Work")
-        }
+        name("Nyan Maven")
+        url("https://maven.hendrixshen.top/releases")
     }
+
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -58,11 +43,10 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation("top.hendrixshen.magiclib:magiclib-${project.minecraft_version.replace(".", "_")}:${project.magiclib_version}") {
+    modApi "com.github.sakura-ryoko:malilib:1.21-0.20.2"
+    modImplementation("top.hendrixshen.magiclib:magiclib-all-${project.minecraft_version.replace(".", ".")}.0-fabric:${project.magiclib_version}") {
         exclude(group: "carpet", module: "fabric-carpet")
     }
-
-    modImplementation "com.ptsmods:devlogin:3.5"
 }
 
 processResources {
