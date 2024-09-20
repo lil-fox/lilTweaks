@@ -6,8 +6,11 @@
   "mixins": [
     "AbstractBlockAccessor",
     "AbstractBlockMixin",
+    "ArmorSlotMixin",
     "HoneyBlockMixin",
     "SlimeBlockMixin",
+    "magiclibfix.WidgetConfigOptionAccessor",
+    "magiclibfix.WidgetConfigOptionInvoker",
     "magiclibfix.WidgetConfigOptionMixin"
   ],
   "client": [

@@ -21,6 +21,6 @@ public class LilTweaksClient implements ClientModInitializer {
         Configs.init();
         AttackBlockCallback.EVENT.register(new BlockClickListener());
         InputEventHandler.getInputManager().registerMouseInputHandler(InputHandler.getInstance());
-        Reference.configHandler.setPostDeserializeCallback(Configs::postDeserialize);
+        //Reference.configHandler.setPostDeserializeCallback(Configs::postDeserialize);
     }
 }

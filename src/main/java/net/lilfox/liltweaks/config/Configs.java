@@ -76,7 +76,7 @@ public class Configs {
 
 
     @Config(category = ConfigCategory.TWEAKS)
-    public static MagicConfigBooleanHotkeyed bormulaOne = cf.newConfigBooleanHotkeyed("permaHaste", false);
+    public static MagicConfigBooleanHotkeyed bormulaOne = cf.newConfigBooleanHotkeyed("bormulaOne", false);
 
 
     public Configs() {
