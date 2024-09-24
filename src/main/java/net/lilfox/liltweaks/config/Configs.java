@@ -1,12 +1,14 @@
 package net.lilfox.liltweaks.config;
 
-import fi.dy.masa.malilib.config.options.ConfigHotkey;
 import net.lilfox.liltweaks.Reference;
 import net.lilfox.liltweaks.callback.BedrockCallbacks;
 import net.lilfox.liltweaks.callback.HoneyCallbacks;
 import net.lilfox.liltweaks.callback.SlimeCallbacks;
 import net.lilfox.liltweaks.gui.GuiConfigs;
-import net.minecraft.client.MinecraftClient;
+import net.lilfox.liltweaks.utils.DependenciesUtils;
+import net.minecraft.client.world.ClientWorld;
+import top.hendrixshen.magiclib.api.dependency.annotation.Dependencies;
+import top.hendrixshen.magiclib.api.dependency.annotation.Dependency;
 import top.hendrixshen.magiclib.api.malilib.annotation.Config;
 import top.hendrixshen.magiclib.api.malilib.config.MagicConfigManager;
 import top.hendrixshen.magiclib.impl.malilib.config.MagicConfigFactory;
@@ -19,6 +21,8 @@ public class Configs {
     private static final MagicConfigManager cm = Reference.configManager;
     private static final MagicConfigFactory cf = Configs.cm.getConfigFactory();
 
+    public static ClientWorld world;
+
     @Config(category = ConfigCategory.TWEAKS)
     public static MagicConfigBooleanHotkeyed closeInventoryByMouse = cf.newConfigBooleanHotkeyed("closeInventoryByMouse", false);
 
@@ -29,7 +33,7 @@ public class Configs {
 //    public static MagicConfigHotkey angelBlockUse;
 
     @Config(category = ConfigCategory.TWEAKS)
-    public static MagicConfigBooleanHotkeyed permaHaste = cf.newConfigBooleanHotkeyed("permaHaste", false);
+    public static MagicConfigBooleanHotkeyed ultraHaste = cf.newConfigBooleanHotkeyed("permaHaste", false);
 
 //    @Hotkey()
 //    @Config(category = "tweaks")
@@ -37,7 +41,7 @@ public class Configs {
 
 
     @Config(category = ConfigCategory.TWEAKS)
-    public static MagicConfigBooleanHotkeyed buddingAmethystBreakingRestriction = cf.newConfigBooleanHotkeyed("buddingAmethystBreakingRestriction", false);
+    public static MagicConfigBooleanHotkeyed saveBuddyAmethyst = cf.newConfigBooleanHotkeyed("buddingAmethystBreakingRestriction", false);
 
 
     @Config(category = ConfigCategory.TWEAKS)
@@ -61,7 +65,7 @@ public class Configs {
 
 
     @Config(category = ConfigCategory.TWEAKS)
-    public static MagicConfigBooleanHotkeyed noHoneyJump = cf.newConfigBooleanHotkeyed("noHoneyJump", false);
+    public static MagicConfigBooleanHotkeyed noHoneyLowJump = cf.newConfigBooleanHotkeyed("noHoneyJump", false);
 
 
 
@@ -79,6 +83,24 @@ public class Configs {
     public static MagicConfigBooleanHotkeyed bormulaOne = cf.newConfigBooleanHotkeyed("bormulaOne", false);
 
 
+    @Config(category = ConfigCategory.TWEAKS)
+    public static MagicConfigBooleanHotkeyed hollyWater = cf.newConfigBooleanHotkeyed("hollyWater", false);
+
+    @Dependencies(require = {@Dependency(DependenciesUtils.itemscroller)})
+    @Config(category = ConfigCategory.TWEAKS)
+    public static MagicConfigBooleanHotkeyed makeTradesGreatAgain = cf.newConfigBooleanHotkeyed("makeTradesGreatAgain", false);
+
+    @Config(category = ConfigCategory.TWEAKS)
+    public static MagicConfigBooleanHotkeyed noSleepy = cf.newConfigBooleanHotkeyed("npSleepy", false);
+
+    @Config(category = ConfigCategory.TWEAKS)
+    public static MagicConfigBooleanHotkeyed noAncHorny = cf.newConfigBooleanHotkeyed("noAncHorny", false);
+
+    @Config(category = ConfigCategory.TWEAKS)
+    public static MagicConfigBooleanHotkeyed axeEffect = cf.newConfigBooleanHotkeyed("axeEffect", false);
+
+    public static boolean axing = false;
+
     public Configs() {
     }
 
@@ -87,11 +109,11 @@ public class Configs {
 
         MagicConfigManager.setHotkeyCallback(openConfigGui, GuiConfigs::openGui, true);
         noHoneySlowness.setValueChangeCallback(HoneyCallbacks::noHoneyVelocityChanged);
-        noHoneyJump.setValueChangeCallback(HoneyCallbacks::noHoneyJumpVelocityChanged);
+        noHoneyLowJump.setValueChangeCallback(HoneyCallbacks::noHoneyJumpVelocityChanged);
         noSLimeSlowness.setValueChangeCallback(SlimeCallbacks::noSlimeSlipperyChanged);
         bormulaOne.setValueChangeCallback(BedrockCallbacks::allSlipperyChanged);
 
-
+        
     }
 
     public static void postDeserialize(MagicConfigHandler magicConfigHandler) {

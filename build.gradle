@@ -35,6 +35,15 @@ repositories {
         url("https://maven.hendrixshen.top/releases")
     }
 
+    maven {
+        name = "Terraformers"
+        url = "https://maven.terraformersmc.com/"
+    }
+
+    maven {
+        url 'https://maven.fallenbreath.me/releases'
+    }
+
     maven { url "https://jitpack.io" }
 }
 
@@ -47,10 +56,15 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modApi "com.github.sakura-ryoko:malilib:1.21-0.20.2"
+    //modApi "com.github.Fallen-Breath.tweakermore:tweakermore-mc1.21:v3.20.2"
+    modApi "com.github.sakura-ryoko:malilib:1.21-0.20.3-sakura.1"
+    modApi "com.github.sakura-ryoko:itemscroller:1.21-0.24.1-sakura.3"
+
     modImplementation("top.hendrixshen.magiclib:magiclib-all-${project.minecraft_version.replace(".", ".")}.0-fabric:${project.magiclib_version}") {
         exclude(group: "carpet", module: "fabric-carpet")
     }
+    modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
+    modApi("me.fallenbreath:conditional-mixin-fabric:0.6.2")
 }
 
 processResources {

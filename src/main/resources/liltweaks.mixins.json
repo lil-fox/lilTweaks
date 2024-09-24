@@ -7,17 +7,25 @@
     "AbstractBlockAccessor",
     "AbstractBlockMixin",
     "ArmorSlotMixin",
+    "AxeItemMixin",
+    "BedBlockMixin",
     "HoneyBlockMixin",
+    "RespawnAnchorBlockMixin",
     "SlimeBlockMixin",
     "magiclibfix.WidgetConfigOptionAccessor",
     "magiclibfix.WidgetConfigOptionInvoker",
     "magiclibfix.WidgetConfigOptionMixin"
   ],
   "client": [
+    "ClientPlayerEntityMixin",
     "ClientPlayerInteractionManagerAccessor",
     "ClientPlayerInteractionManagerMixin",
     "GameRendererMixin",
     "HandledScreenMixin",
+    "KeyboardInputMixin",
+    "MerchantScreenMixin",
+    "MinecraftClientMixin",
+    "ScreenMixin",
     "magiclibfix.GuiBaseMixin"
   ],
   "injectors": {
