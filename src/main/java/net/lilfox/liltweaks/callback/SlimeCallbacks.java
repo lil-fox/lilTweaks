@@ -12,7 +12,7 @@ public class SlimeCallbacks {
     }
 
     public static void noSlimeSlipperyChanged(ConfigBoolean configBoolean) {
-        if (Configs.noSLimeSlowness.getBooleanValue()) {
+        if (Configs.noSlimeSlowness.getBooleanValue()) {
             ((AbstractBlockAccessor) Blocks.SLIME_BLOCK).setSlipperiness(Blocks.STONE.getSlipperiness());
         } else {
             ((AbstractBlockAccessor) Blocks.SLIME_BLOCK).setSlipperiness(0.8f);

@@ -33,7 +33,7 @@ public class Configs {
 //    public static MagicConfigHotkey angelBlockUse;
 
     @Config(category = ConfigCategory.TWEAKS)
-    public static MagicConfigBooleanHotkeyed ultraHaste = cf.newConfigBooleanHotkeyed("permaHaste", false);
+    public static MagicConfigBooleanHotkeyed ultraHaste = cf.newConfigBooleanHotkeyed("ultraHaste", false);
 
 //    @Hotkey()
 //    @Config(category = "tweaks")
@@ -41,7 +41,7 @@ public class Configs {
 
 
     @Config(category = ConfigCategory.TWEAKS)
-    public static MagicConfigBooleanHotkeyed saveBuddyAmethyst = cf.newConfigBooleanHotkeyed("buddingAmethystBreakingRestriction", false);
+    public static MagicConfigBooleanHotkeyed saveBuddyAmethyst = cf.newConfigBooleanHotkeyed("saveBuddyAmethyst", false);
 
 
     @Config(category = ConfigCategory.TWEAKS)
@@ -55,7 +55,7 @@ public class Configs {
 
 
     @Config(category = ConfigCategory.TWEAKS)
-    public static MagicConfigBooleanHotkeyed noSLimeSlowness = cf.newConfigBooleanHotkeyed("noSLimeSlowness", false);
+    public static MagicConfigBooleanHotkeyed noSlimeSlowness = cf.newConfigBooleanHotkeyed("noSlimeSlowness", false);
 
 
 
@@ -65,7 +65,7 @@ public class Configs {
 
 
     @Config(category = ConfigCategory.TWEAKS)
-    public static MagicConfigBooleanHotkeyed noHoneyLowJump = cf.newConfigBooleanHotkeyed("noHoneyJump", false);
+    public static MagicConfigBooleanHotkeyed noHoneyLowJump = cf.newConfigBooleanHotkeyed("noHoneyLowJump", false);
 
 
 
@@ -91,7 +91,7 @@ public class Configs {
     public static MagicConfigBooleanHotkeyed makeTradesGreatAgain = cf.newConfigBooleanHotkeyed("makeTradesGreatAgain", false);
 
     @Config(category = ConfigCategory.TWEAKS)
-    public static MagicConfigBooleanHotkeyed noSleepy = cf.newConfigBooleanHotkeyed("npSleepy", false);
+    public static MagicConfigBooleanHotkeyed noSleepy = cf.newConfigBooleanHotkeyed("noSleepy", false);
 
     @Config(category = ConfigCategory.TWEAKS)
     public static MagicConfigBooleanHotkeyed noAncHorny = cf.newConfigBooleanHotkeyed("noAncHorny", false);
@@ -110,7 +110,7 @@ public class Configs {
         MagicConfigManager.setHotkeyCallback(openConfigGui, GuiConfigs::openGui, true);
         noHoneySlowness.setValueChangeCallback(HoneyCallbacks::noHoneyVelocityChanged);
         noHoneyLowJump.setValueChangeCallback(HoneyCallbacks::noHoneyJumpVelocityChanged);
-        noSLimeSlowness.setValueChangeCallback(SlimeCallbacks::noSlimeSlipperyChanged);
+        noSlimeSlowness.setValueChangeCallback(SlimeCallbacks::noSlimeSlipperyChanged);
         bormulaOne.setValueChangeCallback(BedrockCallbacks::allSlipperyChanged);
 
         

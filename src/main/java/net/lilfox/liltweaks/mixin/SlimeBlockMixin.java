@@ -23,7 +23,7 @@ public class SlimeBlockMixin {
     @ModifyArg(method = "onSteppedOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;setVelocity(Lnet/minecraft/util/math/Vec3d;)V"), index = 0)
     private Vec3d noSlowness(Vec3d velocity, @Local(argsOnly = true) Entity entity){
 
-        if(Configs.noSLimeSlowness.getBooleanValue() & entity instanceof PlayerEntity) {
+        if(Configs.noSlimeSlowness.getBooleanValue() & entity instanceof PlayerEntity) {
             return entity.getVelocity().multiply(1, 1, 1);
         }
         return velocity;
