@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "liltweaks",
+  "version": "${version}",
+  "name": "lilTweaks",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/liltweaks/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "net.lilfox.liltweaks.client.LilTweaksClient"
+    ],
+    "main": [
+      "net.lilfox.liltweaks.LilTweaks"
+    ]
+  },
+  "mixins": [
+    "liltweaks.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}",
+    "lillib": "*"
+  }
+}
