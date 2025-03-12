@@ -4,8 +4,18 @@
   "package": "net.lilfox.liltweaks.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "AbstractBlockAccessor",
+    "AxeEffect",
+    "NoAncHorny",
+    "NoSleepy",
+    "ultrahaste.AbstractBlockMixin"
   ],
   "client": [
+    "Excavator",
+    "HandledScreenMixin",
+    "NiceBalls",
+    "ultrahaste.ClientPlayerInteractionManagerAccessor",
+    "ultrahaste.ClientPlayerInteractionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
