@@ -15,6 +15,9 @@
     ],
     "main": [
       "net.lilfox.liltweaks.LilTweaks"
+    ],
+    "modmenu": [
+      "net.lilfox.liltweaks.impl.ModMenu"
     ]
   },
   "mixins": [
