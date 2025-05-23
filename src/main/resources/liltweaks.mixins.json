@@ -12,6 +12,7 @@
   ],
   "client": [
     "Excavator",
+    "FakeEffectsStatusMixin",
     "HandledScreenMixin",
     "NiceBalls",
     "ultrahaste.ClientPlayerInteractionManagerAccessor",

@@ -2,10 +2,8 @@ package net.lilfox.liltweaks.effects;
 
 import top.hendrixshen.magiclib.impl.malilib.config.option.MagicConfigBooleanHotkeyed;
 
-public class UltraHasteEffect extends FakeEffect {
-
-    protected UltraHasteEffect(MagicConfigBooleanHotkeyed config) {
+public class BormulaOneEffect extends FakeEffect{
+    protected BormulaOneEffect(MagicConfigBooleanHotkeyed config) {
         super(config);
     }
-
 }
