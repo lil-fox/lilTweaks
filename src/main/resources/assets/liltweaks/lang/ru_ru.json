@@ -1,3 +1,20 @@
 {
+  "liltweaks.config.category.all.name": "Все",
+  "liltweaks.config.category.tweaks.name": "Твики",
+  "liltweaks.config.category.settings.name": "Настройки",
 
+  "liltweaks.config.option.angelBlock.comment": "Размещение блоков в воздухе",
+  "liltweaks.config.option.axeEffect.comment": "Быстрое перемещение на блок по которому кликнул незеритовым топором",
+  "liltweaks.config.option.bormulaOne.comment": "Лети на лодке по бедроку так максимально быстро",
+  "liltweaks.config.option.closeInventoryByMouse.comment": "Закрытие инвентарей клико по пустому месту",
+  "liltweaks.config.option.niceBalls.comment": "Если в руке снежок или лут то ты сломаеш вагонетку вместо того, чтобы сесть в нее",
+  "liltweaks.config.option.noAncHorny.comment": "Отмена клика по якорю возрождения, если ты не в незере",
+  "liltweaks.config.option.noSleepy.comment": "Отммена клика по кровати, если ты не в овере",
+  "liltweaks.config.option.openConfigGui.comment": "Открыть настройки",
+  "liltweaks.config.option.saveBuddyAmethyst.comment": "Блокирует ломание цветущих аметистов",
+  "liltweaks.config.option.saveKiddyAmethyst.comment": "Блокирует ломание сетистов-недоростков",
+  "liltweaks.config.option.ultraHaste.comment": "Искуственная постоянная Cпешка ІІ (Стакается с обычной спешкой)",
+
+  "effect.liltweaks.ultra_haste": "Ультра Спешка",
+  "effect.liltweaks.bormula_one": "Бормула Один"
 }
