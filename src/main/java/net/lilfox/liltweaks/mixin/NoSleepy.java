@@ -23,7 +23,7 @@ public class NoSleepy {
     )
     private void cancelUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
         if (Configs.noSleepy.getBooleanValue() && !BedBlock.isBedWorking(world)) {
-            cir.setReturnValue(ActionResult.success(world.isClient));
+            cir.setReturnValue(ActionResult.SUCCESS);
             cir.cancel();
         }
 

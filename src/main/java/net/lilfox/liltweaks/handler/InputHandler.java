@@ -2,7 +2,7 @@ package net.lilfox.liltweaks.handler;
 
 import fi.dy.masa.malilib.hotkeys.IMouseInputHandler;
 import fi.dy.masa.malilib.util.GuiUtils;
-import fi.dy.masa.malilib.util.PositionUtils;
+import fi.dy.masa.malilib.util.position.PositionUtils;
 import net.lilfox.liltweaks.config.Configs;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.BlockItem;
@@ -27,9 +27,9 @@ public class InputHandler implements IMouseInputHandler {
     public boolean onMouseClick(int mouseX, int mouseY, int eventButton, boolean eventButtonState) {
         MinecraftClient mc = MinecraftClient.getInstance();
         if (GuiUtils.getCurrentScreen() == null && mc.player != null && eventButtonState && mc.options.useKey.matchesMouse(eventButton) && Configs.angelBlock.getBooleanValue() && mc.crosshairTarget != null && mc.crosshairTarget.getType() == HitResult.Type.MISS) {
-            BlockPos posFront = PositionUtils.getPositionInfrontOfEntity(mc.player);
+            BlockPos posFront  = PositionUtils.getPositionInFrontOfEntity(mc.player);
             if (mc.world.isAir(posFront) || !mc.world.getBlockState(posFront).getFluidState().isEmpty()) {
-                Direction facing = PositionUtils.getClosestLookingDirection(mc.player).getOpposite();
+                Direction facing = PositionUtils.getClosestSideDirection(mc.player).getOpposite();
                 Vec3d hitVec = PositionUtils.getHitVecCenter(posFront, facing);
                 BlockHitResult context = new BlockHitResult(hitVec, facing, posFront, false);
                 ItemStack stack = mc.player.getMainHandStack();

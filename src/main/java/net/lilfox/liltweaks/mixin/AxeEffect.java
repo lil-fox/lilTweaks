@@ -5,8 +5,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -17,20 +17,24 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(AxeItem.class)
-public abstract class AxeEffect extends ToolItem {
+public abstract class AxeEffect extends Item {
 
-    public AxeEffect(ToolMaterial material, Settings settings) {
-        super(material, settings);
+
+    public AxeEffect(Settings settings) {
+        super(settings);
     }
 
-    public TypedActionResult<ItemStack> use(World world,
-                                             PlayerEntity user,
-                                             Hand hand){
-        TypedActionResult<ItemStack> result = super.use(world, user, hand);
-        if (Configs.axeEffect.getBooleanValue() && this.getMaterial() == ToolMaterials.NETHERITE && user.isOnGround()) {
-            this.movePlayer((ClientPlayerEntity)user);
-            ItemStack itemStack = user.getStackInHand(hand);
-            result = TypedActionResult.success(itemStack);
+    public ActionResult use(World world,
+                            PlayerEntity user,
+                            Hand hand){
+        ActionResult result = super.use(world, user, hand);
+        if (Configs.axeEffect.getBooleanValue()) {
+            ItemStack stack = user.getStackInHand(hand);
+            if(stack.getItem() == Items.NETHERITE_AXE && user.isOnGround()) {
+                this.movePlayer((ClientPlayerEntity) user);
+                ItemStack itemStack = user.getStackInHand(hand);
+                result = ActionResult.SUCCESS;
+            }
         }
 
         return result;

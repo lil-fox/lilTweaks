@@ -43,7 +43,7 @@ dependencies {
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation "com.github.lil-fox:lil-lib:1.21.1-0.1.3"
+    modImplementation "com.github.lil-fox:lil-lib:${project.minecraft_version}-${project.lil_lib_version}"
     modImplementation "top.hendrixshen.magiclib:magiclib-all-${project.magiclib_minecraft_version}-fabric:${project.magiclib_version}"
 
 }
@@ -52,12 +52,14 @@ processResources {
     inputs.property "version", project.version
     inputs.property "minecraft_version", project.minecraft_version
     inputs.property "loader_version", project.loader_version
+    inputs.property "lil_lib_version", project.lil_lib_version
     filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version,
                 "minecraft_version": project.minecraft_version,
-                "loader_version": project.loader_version
+                "loader_version": project.loader_version,
+                "lil_lib_version": project.lil_lib_version
     }
 }
 

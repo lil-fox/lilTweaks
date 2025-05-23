@@ -23,7 +23,7 @@ public class NoAncHorny {
     )
     private void cancelUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
         if (Configs.noAncHorny.getBooleanValue() && !RespawnAnchorBlock.isNether(world)) {
-            cir.setReturnValue(ActionResult.success(world.isClient));
+            cir.setReturnValue(ActionResult.SUCCESS);
             cir.cancel();
         }
 

@@ -21,7 +21,7 @@ public class NiceBalls {
 
     @Shadow
     @Final
-    MinecraftClient client;
+    private MinecraftClient client;
 
     public NiceBalls() {
     }
