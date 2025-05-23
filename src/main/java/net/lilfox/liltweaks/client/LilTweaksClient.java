@@ -22,14 +22,5 @@ public class LilTweaksClient implements ClientModInitializer {
 
         InputEventHandler.getInputManager().registerMouseInputHandler(InputHandler.getInstance());
 
-
-
-
-
-
-
-
-
-
     }
 }
