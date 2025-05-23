@@ -1,3 +1,20 @@
 {
+  "liltweaks.config.category.all.name": "All",
+  "liltweaks.config.category.tweaks.name": "Tweaks",
+  "liltweaks.config.category.settings.name": "Settings",
 
+  "liltweaks.config.option.angelBlock.comment": "Place block in the air",
+  "liltweaks.config.option.axeEffect.comment": "Fast move on block clicked by netherite axe",
+  "liltweaks.config.option.bormulaOne.comment": "Move in boat on bedrock as fast as possible",
+  "liltweaks.config.option.closeInventoryByMouse.comment": "Close inventories by clicking in empty space",
+  "liltweaks.config.option.niceBalls.comment": "Break minecarts instead mount with snowballs or bow",
+  "liltweaks.config.option.noAncHorny.comment": "Cancel clicking on respawn anchor if not in the nether",
+  "liltweaks.config.option.noSleepy.comment": "Cancel clicking on bed if not in the overworld",
+  "liltweaks.config.option.openConfigGui.comment": "Open this screen",
+  "liltweaks.config.option.saveBuddyAmethyst.comment": "Cancel breaking budding amethyst",
+  "liltweaks.config.option.saveKiddyAmethyst.comment": "Cancel breaking not full grown amethyst crystals",
+  "liltweaks.config.option.ultraHaste.comment": "Fake permanent Haste II (Stacking with real Haste)",
+
+  "effect.liltweaks.ultra_haste": "Ultra Haste",
+  "effect.liltweaks.bormula_one": "Bormula One"
 }
