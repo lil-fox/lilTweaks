@@ -6,6 +6,7 @@
   "mixins": [
     "AbstractBlockAccessor",
     "AxeEffect",
+    "BormulaOne",
     "NoAncHorny",
     "NoSleepy",
     "ultrahaste.AbstractBlockMixin"

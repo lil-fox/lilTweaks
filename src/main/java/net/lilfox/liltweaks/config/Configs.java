@@ -1,7 +1,6 @@
 package net.lilfox.liltweaks.config;
 
 import net.lilfox.liltweaks.ModInfo;
-import net.lilfox.liltweaks.callback.BormulaOne;
 import top.hendrixshen.magiclib.api.malilib.annotation.Config;
 import top.hendrixshen.magiclib.api.malilib.config.MagicConfigManager;
 import top.hendrixshen.magiclib.impl.malilib.config.MagicConfigFactory;
@@ -73,7 +72,6 @@ public class Configs {
         cm.parseConfigClass(Configs.class);
         MagicConfigManager.setHotkeyCallback(openConfigGui, ConfigsGui::openGui, true);
 
-        bormulaOne.setValueChangeCallback(BormulaOne::onSwitch);
     }
 
 }
