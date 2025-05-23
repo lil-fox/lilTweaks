@@ -28,7 +28,7 @@ public class BlockClickListener implements AttackBlockCallback {
             NetworkUtils.sendPacket(new PlayerActionC2SPacket(PlayerActionC2SPacket.Action.START_DESTROY_BLOCK, blockPos, direction));
             NetworkUtils.sendPacket(new PlayerActionC2SPacket(PlayerActionC2SPacket.Action.STOP_DESTROY_BLOCK, blockPos, direction));
 
-            return ActionResult.SUCCESS;
+            return ActionResult.PASS;
 
         } else {
             return ActionResult.PASS;

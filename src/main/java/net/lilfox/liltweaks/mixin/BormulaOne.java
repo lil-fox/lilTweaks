@@ -1,8 +1,8 @@
 package net.lilfox.liltweaks.mixin;
 
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.lilfox.liltweaks.config.Configs;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -12,29 +12,29 @@ import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(AbstractBoatEntity.class)
 public class BormulaOne{
 
-    @Redirect(method = "getNearbySlipperiness", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;getSlipperiness()F"))
-    private float bormulaOne(Block instance){
+
+    @ModifyExpressionValue(method = "getNearbySlipperiness", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;getSlipperiness()F"))
+    private float bormulaOne(float original){
 
         BoatEntity self = (BoatEntity) (Object) this;
 
         if(!(Configs.bormulaOne.getBooleanValue() && self.isOnGround())) {
-            return instance.getSlipperiness();
+            return original;
         }
 
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
         Entity passenger = self.getControllingPassenger();
 
         if(passenger == null || player == null || !passenger.getUuid().equals(player.getUuid())) {
-            return instance.getSlipperiness();
+            return original;
         }
 
         if(!self.getWorld().getBlockState(BlockPos.ofFloored(self.getX(), self.getY() - 0.01 , self.getZ())).isOf(Blocks.BEDROCK)) {
-            return instance.getSlipperiness();
+            return original;
         }
 
         return 1.0F;

@@ -32,7 +32,6 @@ public abstract class AxeEffect extends Item {
             ItemStack stack = user.getStackInHand(hand);
             if(stack.getItem() == Items.NETHERITE_AXE && user.isOnGround()) {
                 this.movePlayer((ClientPlayerEntity) user);
-                ItemStack itemStack = user.getStackInHand(hand);
                 result = ActionResult.SUCCESS;
             }
         }
@@ -69,10 +68,8 @@ public abstract class AxeEffect extends Item {
             targetPos = eyePos.add(lookDirection.multiply((double)40.0F));
         }
 
-        Vec3d moveDirection = targetPos.subtract(player.getPos()).normalize();
         (new Thread(() -> {
             Vec3d currentPosition = player.getPos();
-            Vec3d velocity = moveDirection.multiply(0.2);
             double distanceX = Math.abs(targetPos.x - currentPosition.x);
             double distanceY = Math.abs(targetPos.y - currentPosition.y);
             double distanceZ = Math.abs(targetPos.z - currentPosition.z);

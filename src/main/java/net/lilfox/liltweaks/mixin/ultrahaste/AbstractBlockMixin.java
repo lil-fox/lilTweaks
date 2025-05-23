@@ -18,11 +18,11 @@ public class AbstractBlockMixin {
 
     @Inject(
             at = {@At("RETURN")},
-            method = {"calcBlockBreakingDelta"},
+            method = "calcBlockBreakingDelta",
             cancellable = true
     )
     public void calcBlockBreakingDelta(BlockState state, PlayerEntity player, BlockView world, BlockPos pos, CallbackInfoReturnable<Float> cir) {
-        if (Configs.ultraHaste.getBooleanValue() && cir.getReturnValueF() < 0.7F) {
+        if (!player.isCreative() && Configs.ultraHaste.getBooleanValue() && cir.getReturnValueF() < 0.7F) {
             cir.setReturnValue(cir.getReturnValueF() / 0.7F);
         }
 
