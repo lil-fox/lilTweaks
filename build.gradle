@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.10-SNAPSHOT'
+    id 'fabric-loom' version '1.11-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -44,7 +44,7 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     modImplementation "com.github.lil-fox:lil-lib:${project.minecraft_version}-${project.lil_lib_version}"
-    modImplementation "top.hendrixshen.magiclib:magiclib-all-${project.magiclib_minecraft_version}-fabric:${project.magiclib_version}"
+    modImplementation "top.hendrixshen.magiclib:magiclib-all-${project.magiclib_minecraft_version}-fabric:${project.magiclib_version}-beta"
 
 }
 
