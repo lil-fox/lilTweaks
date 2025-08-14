@@ -20,7 +20,7 @@ public class ClientPlayerInteractionManagerMixin {
     )
     private void dropCooldown(BlockPos pos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
         if (Configs.ultraHaste.getBooleanValue()) {
-            ((ClientPlayerInteractionManagerAccessor)this).setBlockBreakingCooldown(0);
+           ((ClientPlayerInteractionManagerAccessor)this).setBlockBreakingCooldown(0);
         }
 
     }

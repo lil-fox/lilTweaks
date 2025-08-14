@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Mixin(InGameHud.class)
 public class FakeEffectsStatusMixin {
 
-    @ModifyArg(method = "renderStatusEffectOverlay", at = @At(value = "INVOKE", target = ""), index = 1)
+    @ModifyArg(method = "renderStatusEffectOverlay", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/util/Identifier;IIII)V"), index = 1)
     private Identifier fakeEffectColor(Identifier sprite, @Local StatusEffectInstance statusEffectInstance){
 
         if(Registries.STATUS_EFFECT.get(statusEffectInstance.getEffectType().getKey().orElseThrow()) instanceof FakeEffect){

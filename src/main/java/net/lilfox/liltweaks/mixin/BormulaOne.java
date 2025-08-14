@@ -20,7 +20,8 @@ public class BormulaOne{
     @ModifyExpressionValue(method = "getNearbySlipperiness", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;getSlipperiness()F"))
     private float bormulaOne(float original){
 
-        BoatEntity self = (BoatEntity) (Object) this;
+
+        AbstractBoatEntity self = (AbstractBoatEntity) (Object) this;
 
         if(!(Configs.bormulaOne.getBooleanValue() && self.isOnGround())) {
             return original;
