@@ -16,6 +16,8 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
+import java.util.concurrent.locks.LockSupport;
+
 @Mixin(AxeItem.class)
 public abstract class AxeEffect extends Item {
 
@@ -43,24 +45,26 @@ public abstract class AxeEffect extends Item {
     private void movePlayer(ClientPlayerEntity player) {
         Vec3d lookDirection = player.getRotationVec(1.0F);
         Vec3d eyePos = player.getEyePos();
-        BlockHitResult hitResult = player.getWorld().raycast(new RaycastContext(eyePos, eyePos.add(lookDirection.multiply((double)40.0F)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, player));
+        BlockHitResult hitResult = player.getEntityWorld().raycast(new RaycastContext(eyePos, eyePos.add(lookDirection.multiply((double)40.0F)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, player));
         Vec3d targetPos;
         if (hitResult.getType() == HitResult.Type.BLOCK) {
             BlockPos hitResultPos = hitResult.getBlockPos();
             BlockPos aboveTargetBlockFoot = hitResultPos.up();
             BlockPos aboveTargetBlockHead = aboveTargetBlockFoot.up();
-            BlockState aboveTargetBlockFootState = player.getWorld().getBlockState(aboveTargetBlockFoot);
-            BlockState aboveTargetBlockHeadState = player.getWorld().getBlockState(aboveTargetBlockHead);
-            if (!player.getWorld().getBlockState(aboveTargetBlockFoot).isAir() && !aboveTargetBlockFootState.getCollisionShape(player.getWorld(), aboveTargetBlockFoot).isEmpty() || !player.getWorld().getBlockState(aboveTargetBlockHead).isAir() && !aboveTargetBlockHeadState.getCollisionShape(player.getWorld(), aboveTargetBlockHead).isEmpty()) {
-                switch (hitResult.getSide()) {
-                    case NORTH -> targetPos = new Vec3d((double)hitResultPos.getX() + (double)0.5F, (double)hitResultPos.getY() + (double)0.5F, (double)(hitResultPos.getZ() - 1));
-                    case SOUTH -> targetPos = new Vec3d((double)hitResultPos.getX() + (double)0.5F, (double)hitResultPos.getY() + (double)0.5F, (double)hitResultPos.getZ() + (double)1.0F);
-                    case WEST -> targetPos = new Vec3d((double)(hitResultPos.getX() - 1), (double)hitResultPos.getY() + (double)0.5F, (double)hitResultPos.getZ() + (double)0.5F);
-                    case EAST -> targetPos = new Vec3d((double)hitResultPos.getX() + (double)1.0F, (double)hitResultPos.getY() + (double)0.5F, (double)hitResultPos.getZ() + (double)0.5F);
-                    case UP -> targetPos = new Vec3d((double)hitResultPos.getX() + (double)0.5F, (double)(hitResultPos.getY() + 1), (double)hitResultPos.getZ() + (double)0.5F);
-                    case DOWN -> targetPos = new Vec3d((double)hitResultPos.getX() + (double)0.5F, (double)hitResultPos.getY() - (double)0.5F, (double)hitResultPos.getZ() + (double)0.5F);
-                    default -> targetPos = new Vec3d((double)hitResultPos.getX() + (double)0.5F, (double)hitResultPos.getY() + (double)0.5F, (double)hitResultPos.getZ() + (double)0.5F);
-                }
+            BlockState aboveTargetBlockFootState = player.getEntityWorld().getBlockState(aboveTargetBlockFoot);
+            BlockState aboveTargetBlockHeadState = player.getEntityWorld().getBlockState(aboveTargetBlockHead);
+            if (!player.getEntityWorld().getBlockState(aboveTargetBlockFoot).isAir() && !aboveTargetBlockFootState.getCollisionShape(player.getEntityWorld(), aboveTargetBlockFoot).isEmpty() || !player.getEntityWorld().getBlockState(aboveTargetBlockHead).isAir() && !aboveTargetBlockHeadState.getCollisionShape(player.getEntityWorld(), aboveTargetBlockHead).isEmpty()) {
+
+                targetPos = new Vec3d((double)hitResultPos.getX() + (double)0.5F, (double)(hitResultPos.getY() + 1), (double)hitResultPos.getZ() + (double)0.5F);
+//                switch (hitResult.getSide()) {
+//                    case NORTH -> targetPos = new Vec3d((double)hitResultPos.getX() + (double)0.5F, (double)hitResultPos.getY() + (double)0.5F, (double)(hitResultPos.getZ() - 1));
+//                    case SOUTH -> targetPos = new Vec3d((double)hitResultPos.getX() + (double)0.5F, (double)hitResultPos.getY() + (double)0.5F, (double)hitResultPos.getZ() + (double)1.0F);
+//                    case WEST -> targetPos = new Vec3d((double)(hitResultPos.getX() - 1), (double)hitResultPos.getY() + (double)0.5F, (double)hitResultPos.getZ() + (double)0.5F);
+//                    case EAST -> targetPos = new Vec3d((double)hitResultPos.getX() + (double)1.0F, (double)hitResultPos.getY() + (double)0.5F, (double)hitResultPos.getZ() + (double)0.5F);
+//                    case UP -> targetPos = new Vec3d((double)hitResultPos.getX() + (double)0.5F, (double)(hitResultPos.getY() + 1), (double)hitResultPos.getZ() + (double)0.5F);
+//                    case DOWN -> targetPos = new Vec3d((double)hitResultPos.getX() + (double)0.5F, (double)hitResultPos.getY() - (double)0.5F, (double)hitResultPos.getZ() + (double)0.5F);
+//                    default -> targetPos = new Vec3d((double)hitResultPos.getX() + (double)0.5F, (double)hitResultPos.getY() + (double)0.5F, (double)hitResultPos.getZ() + (double)0.5F);
+//                }
             } else {
                 targetPos = new Vec3d((double)hitResult.getBlockPos().getX() + (double)0.5F, (double)(hitResult.getBlockPos().getY() + 1), (double)hitResult.getBlockPos().getZ() + (double)0.5F);
             }
@@ -69,30 +73,31 @@ public abstract class AxeEffect extends Item {
         }
 
         (new Thread(() -> {
-            Vec3d currentPosition = player.getPos();
+            Vec3d currentPosition = player.getEntityPos();
             double distanceX = Math.abs(targetPos.x - currentPosition.x);
             double distanceY = Math.abs(targetPos.y - currentPosition.y);
             double distanceZ = Math.abs(targetPos.z - currentPosition.z);
             double maxDistance = Math.max(distanceX, Math.max(distanceY, distanceZ));
-            double stepSizeX = 0.2 * (distanceX / maxDistance);
-            double stepSizeY = 0.2 * (distanceY / maxDistance);
-            double stepSizeZ = 0.2 * (distanceZ / maxDistance);
-            Configs.axing = true;
-            player.getAbilities().flying = true;
+            double stepSizeX = 0.02 * (distanceX / maxDistance);
+            double stepSizeY = 0.02 * (distanceY / maxDistance);
+            double stepSizeZ = 0.02 * (distanceZ / maxDistance);
+            //Configs.axing = true;
+            //player.getAbilities().flying = true;
 
-            while(currentPosition.distanceTo(targetPos) > 0.1 && !player.isRemoved() && !player.isDead()) {
+            while(currentPosition.distanceTo(targetPos) > 0.02 && !player.isRemoved() && !player.isDead()) {
                 currentPosition = new Vec3d(this.moveTowards(currentPosition.x, targetPos.x, stepSizeX), this.moveTowards(currentPosition.y, targetPos.y, stepSizeY), this.moveTowards(currentPosition.z, targetPos.z, stepSizeZ));
                 player.updatePosition(currentPosition.x, currentPosition.y, currentPosition.z);
 
-                try {
-                    Thread.sleep(1L);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+//                try {
+                    LockSupport.parkNanos(1000);
+                    //Thread.sleep(1L);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
             }
 
-            Configs.axing = false;
-            player.getAbilities().flying = false;
+            //Configs.axing = false;
+            //player.getAbilities().flying = false;
         })).start();
     }
 

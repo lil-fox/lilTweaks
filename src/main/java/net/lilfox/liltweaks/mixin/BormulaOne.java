@@ -34,7 +34,7 @@ public class BormulaOne{
             return original;
         }
 
-        if(!self.getWorld().getBlockState(BlockPos.ofFloored(self.getX(), self.getY() - 0.01 , self.getZ())).isOf(Blocks.BEDROCK)) {
+        if(!self.getEntityWorld().getBlockState(BlockPos.ofFloored(self.getX(), self.getY() - 0.01 , self.getZ())).isOf(Blocks.BEDROCK)) {
             return original;
         }
 

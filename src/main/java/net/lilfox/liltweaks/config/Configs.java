@@ -56,6 +56,10 @@ public class Configs {
     public static MagicConfigBooleanHotkeyed angelBlock =
             cf.newConfigBooleanHotkeyed("angelBlock", false);
 
+    @Config(category = ConfigCategory.TWEAKS)
+    public static MagicConfigBooleanHotkeyed extraHappiness =
+            cf.newConfigBooleanHotkeyed("extraHappiness", false);
+
     public static boolean axing;
 
 

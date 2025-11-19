@@ -1,6 +1,7 @@
 package net.lilfox.liltweaks.mixin;
 
 import net.lilfox.liltweaks.config.Configs;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.screen.ScreenHandler;
 import org.spongepowered.asm.mixin.Final;
@@ -27,14 +28,14 @@ public abstract class HandledScreenMixin<T extends ScreenHandler> {
     public abstract void close();
 
     @Shadow
-    protected abstract boolean isClickOutsideBounds(double var1, double var3, int var5, int var6, int var7);
+    protected abstract boolean isClickOutsideBounds(double mouseX, double mouseY, int left, int top);
 
     @Inject(
             method = {"mouseClicked"},
             at = {@At("HEAD")}
     )
-    protected void closeOnClick(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
-        if (Configs.closeInventoryByMouse.getBooleanValue() && this.isClickOutsideBounds(mouseX, mouseY, this.x, this.y, button) && this.handler.getCursorStack().isEmpty()) {
+    protected void closeOnClick(Click click, boolean doubled, CallbackInfoReturnable<Boolean> cir) {
+        if (Configs.closeInventoryByMouse.getBooleanValue() && this.isClickOutsideBounds(click.x(), click.y(), this.x, this.y) && this.handler.getCursorStack().isEmpty()) {
             this.close();
         }
 

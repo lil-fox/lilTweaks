@@ -5,6 +5,7 @@ import fi.dy.masa.malilib.util.GuiUtils;
 import fi.dy.masa.malilib.util.position.PositionUtils;
 import net.lilfox.liltweaks.config.Configs;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.Click;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
@@ -24,9 +25,9 @@ public class InputHandler implements IMouseInputHandler {
         return INSTANCE;
     }
 
-    public boolean onMouseClick(int mouseX, int mouseY, int eventButton, boolean eventButtonState) {
+    public boolean onMouseClick(Click click, boolean eventButtonState) {
         MinecraftClient mc = MinecraftClient.getInstance();
-        if (GuiUtils.getCurrentScreen() == null && mc.player != null && eventButtonState && mc.options.useKey.matchesMouse(eventButton) && Configs.angelBlock.getBooleanValue() && mc.crosshairTarget != null && mc.crosshairTarget.getType() == HitResult.Type.MISS) {
+        if (GuiUtils.getCurrentScreen() == null && mc.player != null && eventButtonState && mc.options.useKey.matchesMouse(click) && Configs.angelBlock.getBooleanValue() && mc.crosshairTarget != null && mc.crosshairTarget.getType() == HitResult.Type.MISS) {
             BlockPos posFront  = PositionUtils.getPositionInFrontOfEntity(mc.player);
             if (mc.world.isAir(posFront) || !mc.world.getBlockState(posFront).getFluidState().isEmpty()) {
                 Direction facing = PositionUtils.getClosestSideDirection(mc.player).getOpposite();
