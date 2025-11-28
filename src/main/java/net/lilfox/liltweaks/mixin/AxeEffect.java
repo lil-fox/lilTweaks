@@ -82,14 +82,14 @@ public abstract class AxeEffect extends Item {
             double stepSizeY = 0.02 * (distanceY / maxDistance);
             double stepSizeZ = 0.02 * (distanceZ / maxDistance);
             //Configs.axing = true;
-            //player.getAbilities().flying = true;
+            player.getAbilities().flying = true;
 
             while(currentPosition.distanceTo(targetPos) > 0.02 && !player.isRemoved() && !player.isDead()) {
                 currentPosition = new Vec3d(this.moveTowards(currentPosition.x, targetPos.x, stepSizeX), this.moveTowards(currentPosition.y, targetPos.y, stepSizeY), this.moveTowards(currentPosition.z, targetPos.z, stepSizeZ));
                 player.updatePosition(currentPosition.x, currentPosition.y, currentPosition.z);
 
 //                try {
-                    LockSupport.parkNanos(1000);
+                    LockSupport.parkNanos(100);
                     //Thread.sleep(1L);
 //                } catch (InterruptedException e) {
 //                    throw new RuntimeException(e);
@@ -97,7 +97,7 @@ public abstract class AxeEffect extends Item {
             }
 
             //Configs.axing = false;
-            //player.getAbilities().flying = false;
+            player.getAbilities().flying = false;
         })).start();
     }
 
